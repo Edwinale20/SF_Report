@@ -5,7 +5,7 @@ import streamlit as st
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Police Incident Dashboard in San Francisco", page_icon=":police_car:", layout="wide")
 
-# ---- READ EXCEL ----
+# Excel
 @st.cache_data
 def get_data_from_excel():
     df = pd.read_excel("SF.xlsx")
@@ -13,7 +13,7 @@ def get_data_from_excel():
 
 df = get_data_from_excel()
 
-# ---- SIDEBAR ----
+# Barra lateral
 st.sidebar.header("Please Filter Here:")
 
 # Filtro por año
@@ -28,8 +28,8 @@ selected_district = st.sidebar.selectbox("Select District", df["Police District"
 # Filtrar el dataframe según los filtros seleccionados
 filtered_df = df.loc[(df["Incident Year"] == selected_year) & (df["Resolution"] == selected_resolution) & (df["Police District"] == selected_district)].copy()
 
-# ---- MAINPAGE ----
-st.title(":police_car: Police Incident Dashboard")
+# Pagina principal
+st.title(":police_car: Police Incident Dashboard in San Francisco")
 st.markdown("##")
 
 # TOP KPI's
